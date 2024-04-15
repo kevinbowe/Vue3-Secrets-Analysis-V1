@@ -1,7 +1,6 @@
 # Vue3-Secrets-Analysis-V1
 
-This project is based on a 'clean' Vue3 boiler-plate with important additions and configurations. It is well suited for 'bootstrapping' a new vue3 application.
-
+This project is based on a 'clean' Vue3 boiler-plate (Vue3-Start-V2) with which contains important additions and configurations. A new APIView.vue page has been created. The new code will be created in this file.
 ```sp
 The project uses the Vue3 Composition API.
 ```
