@@ -2,7 +2,7 @@
 import { ref, inject, getCurrentInstance } from "vue"
 import { useUserPiniaStore } from "../stores/users"
 import '@mdi/font/css/materialdesignicons.css'
-import { fail } from "../components/MyConsoleUtil"
+import { log, fail, getNames } from "../components/MyConsoleUtil"
 /* -------------------------------------------------------------------------- */
 const piniaStore = useUserPiniaStore()		// Leave this for now
 const cb = ref()
@@ -15,7 +15,36 @@ const SelCb = () => {
 const SelBtn = () => {
 	btnTxt.value = btnTxt.value === "Hello" ? "Goodbye" : "Hello"
 }
+/* -------------------------------------------------------------------------- */
+
 /* %%%%%%  On Page Load %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+async function fetchData() {
+	// return await fetch('https://o8p0r20xo5.execute-api.us-east-1.amazonaws.com/default/GetSecretLambda-03')
+	// return await fetch('https://o8p0r20xo5.execute-api.us-east-1.amazonaws.com/default/GetSecretLambda-03/name')
+	// return await fetch('https://o8p0r20xo5.execute-api.us-east-1.amazonaws.com/default/GetSecretLambda-03/webhook-secret-01')
+	// return await fetch('https://o8p0r20xo5.execute-api.us-east-1.amazonaws.com/default/GetSecretLambda-03/secret-key-test-01')
+	return await fetch('https://o8p0r20xo5.execute-api.us-east-1.amazonaws.com/default/GetSecretLambda-03/findme')
+	// return await fetch('')
+	.then(resp => {
+		if (!resp.ok) {
+			throw `Server error: [${resp.status}] [${resp.statusText}] [${resp.url}]`;
+		}
+		// console.log("ONE")
+		return resp.text();
+		// resp.json();
+		// return resp.json();
+	})
+	.then(receivedJson => {
+		// your code with json here...
+		// console.log("TWO")
+		console.log(receivedJson)
+	})
+	.catch(err => {
+		console.debug("Error in fetch", err);
+	});
+}
+fetchData()
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 </script>
